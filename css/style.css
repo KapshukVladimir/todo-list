@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.todo {
+    font-family: Arial, sans-serif;
+    width: 700px;
+    height: auto;
+    margin: auto;
+    background: linear-gradient(#e66465, #9198e5);
+}
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+.list-item {
+    list-style: none;
+    padding: 10px 0;
+    color: #fff;
+}
