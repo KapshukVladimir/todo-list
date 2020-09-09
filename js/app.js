@@ -22,6 +22,7 @@ export class AppComponent {
 
     const inputFormComponent = new InputFormComponent();
     const inputFormElement = inputFormComponent.getElement();
+    inputFormComponent.addEventListeners();
     renderElement(mainElement, inputFormElement, insertPosition.BEFOREBEGIN)
 
   }
