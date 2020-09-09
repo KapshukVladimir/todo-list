@@ -1,13 +1,11 @@
 import { HeaderComponent } from "./components/header.component.js";
 import { renderElement, insertPosition } from "../utils.js";
 import { TodoListComponent } from "./components/todo-list.component.js";
-import { TaskServices } from "../services/task.services.js";
 import { InputFormComponent } from './components/input-form.component.js';
 
 export class AppComponent {
   constructor() {
     // ...
-    window.data = new TaskServices();
   }
   init() {
     //Инициализация всех компонентов (new)
