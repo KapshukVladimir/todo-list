@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
 }
-.todo {
+.main {
     font-family: Arial, sans-serif;
     width: 700px;
     height: auto;
@@ -15,7 +15,7 @@
     flex-direction: column;
     padding: 1rem;
 }
-.list-item {
+.todo-item {
     list-style: none;
     padding: 10px 0;
     color: #fff;
