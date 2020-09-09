@@ -1,8 +1,8 @@
 import { HeaderComponent } from "./components/header.component.js";
-import { renderElement } from "../utils.js";
+import { renderElement, insertPosition } from "../utils.js";
 import { TodoListComponent } from "./components/todo-list.component.js";
-import { TodoItemComponent } from "./components/todo-item.component.js";
-import {TaskServices} from "../services/task.services";
+import { TaskServices } from "../services/task.services.js";
+import { InputFormComponent } from './components/input-form.component.js';
 
 export class AppComponent {
   constructor() {
@@ -12,19 +12,19 @@ export class AppComponent {
   init() {
     //Инициализация всех компонентов (new)
 
-    const headerComponent = new HeaderComponent("Hello, I'm Header!!!"); // Инициализвция самого компонента
-    const headerElement = headerComponent.getElement();                        // Получение созданного Элемента
-    const bodyElement = document.querySelector('body');               // Получаем элемент в который хотим вставить
-    renderElement(bodyElement, headerElement);                                 // Отрисовываем элементы
+    const headerComponent = new HeaderComponent("Hello, I'm Header!!!"),
+          headerElement = headerComponent.getElement(),
+          bodyElement = document.querySelector('body');
+    renderElement(bodyElement, headerElement, insertPosition.BEFOREBEGIN);
 
-    const todoListComponent = new TodoListComponent();
-    const todoListElement = todoListComponent.getElement();
-    const mainElement = document.querySelector('.main');
-    renderElement(mainElement, todoListElement );
+    const todoListComponent = new TodoListComponent(),
+          todoListElement = todoListComponent.getElement(),
+          mainElement = document.querySelector('.main');
+    renderElement(mainElement, todoListElement, insertPosition.BEFOREEND );
 
-    const todoItemComponent =  new TodoItemComponent();
-    const todoItemElement = todoItemComponent.getElement();
-    const todoElement = document.querySelector('.todo-list');
-    renderElement(todoElement, todoItemElement);
+    const inputFormComponent = new InputFormComponent();
+    const inputFormElement = inputFormComponent.getElement();
+    renderElement(mainElement, inputFormElement, insertPosition.BEFOREBEGIN)
+
   }
 }

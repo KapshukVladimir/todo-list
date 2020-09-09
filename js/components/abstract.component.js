@@ -7,10 +7,12 @@ export class AbstractComponent {
   _getTemplate() {
     // ошибка ...
   }
-
+  _afterCreate() {
+  }
   getElement() {
     if (!this._element) {
-      this._element = createElement(this._getTemplate())
+      this._element = createElement(this._getTemplate());
+      this._afterCreate()
     }
 
     return this._element;

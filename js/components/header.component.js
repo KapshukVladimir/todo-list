@@ -6,10 +6,8 @@ export class HeaderComponent extends AbstractComponent {
     this._name = name;
   }
   _getTemplate() {
-    return ( `<header>
-                <div>
-                    <h1>${this._name}</h1>
-                </div>
+    return ( `<header class="header">
+                    <h1 class="h1">${this._name}</h1>
               </header>` )
   }
 }

@@ -3,6 +3,12 @@
     margin: 0;
     padding: 0;
 }
+.h1{
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #e66465;
+    background: linear-gradient(#9198e5, #caace8);
+}
 .main {
     font-family: Arial, sans-serif;
     width: 700px;
@@ -19,12 +25,13 @@
     list-style: none;
     padding: 10px 0;
     color: #fff;
+    font-size: 30px;
 }
 .container {
     padding: 20px;
 }
 .todo-form {
-
+    padding: 10px;
 }
 .todo-form input{
     width: 100%;
