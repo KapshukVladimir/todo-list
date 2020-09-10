@@ -18,7 +18,7 @@ export class TodoItemComponent extends AbstractComponent {
                 </div>
                 <h2 class="task-title">${this._title}</h2>
                 <div class="create-date">Creation date: ${this._timeCreated}.</div>
-                <div>Expiration date:${this._timeDeadline}</div>
+                <div>Expiration date: ${this._timeDeadline}</div>
             </li>`)
   }
 }

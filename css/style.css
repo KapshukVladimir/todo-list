@@ -29,12 +29,13 @@ body {
     padding: 1rem;
 }
 .tooltip {
-    display: none;
+    visibility: hidden;
     color: red;
     font-weight: bold;
     margin-top: 10px;
     text-align: left;
 }
+
 .todo-item {
     width: 25%;
     list-style: none;
@@ -50,20 +51,28 @@ body {
 .container {
     padding: 20px;
 }
+.form-container {
+    display: flex;
+    justify-content: center;
+}
 .todo-form {
-    padding: 10px;
+    margin: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 .todo-form input{
-    width: 50%;
+    width: 100%;
     padding: 5px;
     font-size: 30px;
     border: 5px solid rgba(255, 255, 255, .5);
     border-radius: 5px;
     background: #cacaca;
     color: #FFF;
-
+}
+.plus-btn {
+    cursor: pointer;
+    font-size: 30px;
+    padding: 5px;
+    margin: 13px 0 0 10px;
 }

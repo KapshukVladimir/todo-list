@@ -25,8 +25,8 @@ export function getTimeCreated() {
   return `${timeCreated.getDate()}.${timeCreated.getMonth() + 1}.${timeCreated.getFullYear()}`;
 }
 export function getTimeDeadline() {
-  let timeCreated = new Date();
-  return `${timeCreated.getDate() + 1}.${timeCreated.getMonth() + 1}.${timeCreated.getFullYear()}`;
+  let timeDeadLine = new Date();
+  return `${timeDeadLine.getDate() + 1}.${timeDeadLine.getMonth() + 1}.${timeDeadLine.getFullYear()}`;
 }
 
 export function uniqueId() {

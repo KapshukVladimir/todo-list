@@ -11,9 +11,8 @@ export let taskData = [
 export function addTask(task) {
   task.id = uniqueId();
   task.timeCreated = getTimeCreated();
-  task._timeDeadline = getTimeDeadline();
-    taskData.push(task);
-  console.log(task);
+  task.timeDeadline = getTimeDeadline();
+  taskData.push(task);
   emitEvent('update-tasks', task);
 }
 export function emitEvent(type, data) {
