@@ -12,14 +12,16 @@ export class InputFormComponent extends AbstractComponent {
   _newTask(event) {
     if (event.keyCode === ENTER_KEY) {
       event.preventDefault();
-      let taskTitle = this.getElement().firstChild.value;
-      if (/[a-zа-я0-1]+$/i.test(taskTitle)){
-        addTask({taskTitle});
+      let taskTitle = this.getElement().firstChild;
+      if (/[a-zа-я0-1]+$/i.test(taskTitle.value)){
+        addTask({taskTitle: taskTitle.value});
         document.querySelector('.tooltip').style.display = 'none';
-        this.getElement().firstChild.value = "";
+        document.querySelector('.form-input').style.outline = "1px solid #000";
+        taskTitle.value = "";
       } else {
         document.querySelector('.tooltip').style.display = 'block';
-        this.getElement().firstChild.value = "";
+        document.querySelector('.form-input').style.outline = "1px solid red";
+        taskTitle.value = "";
       }
 
     }
