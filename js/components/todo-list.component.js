@@ -5,6 +5,7 @@ import { taskData } from '../../services/task.services.js';
 
 
 export class TodoListComponent extends AbstractComponent {
+
   constructor() {
     super();
     this.tasks = taskData;
@@ -13,24 +14,27 @@ export class TodoListComponent extends AbstractComponent {
   _render() {
     this.getElement().innerHTML = "";
     this.tasks.forEach((value,id) => {
-      console.log(value);
-      const todoItemComponent = new TodoItemComponent(value, id);
+      const todoItemComponent = new TodoItemComponent(value, id, value.timeCreated);
       const todoItemElement = todoItemComponent.getElement();
-      renderElement(this.getElement(), todoItemElement, insertPosition.BEFOREEND)
-    })
+      renderElement(this.getElement(), todoItemElement, insertPosition.BEFOREEND);
+    });
   }
+
   _getTemplate() {
-    return (`<ul class="todo-list"></ul>`)
+    return (`<ul class="todo-list"></ul>`);
   }
+
   addEventListeners() {
-    window.addEventListener('update-tasks', this._dataChange.bind(this))
+    window.addEventListener('update-tasks', this._dataChange.bind(this));
   }
+
   _afterCreate() {
     this.addEventListeners();
     this._render();
   }
+
   _dataChange() {
     this.tasks = taskData;
-    this._render()
+    this._render();
   }
 }

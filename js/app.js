@@ -4,12 +4,9 @@ import { TodoListComponent } from "./components/todo-list.component.js";
 import { InputFormComponent } from './components/input-form.component.js';
 
 export class AppComponent {
-  constructor() {
-    // ...
-  }
+
   init() {
     //Инициализация всех компонентов (new)
-
     const headerComponent = new HeaderComponent("Hello, I'm Header!!!"),
           headerElement = headerComponent.getElement(),
           bodyElement = document.querySelector('body');
@@ -20,10 +17,10 @@ export class AppComponent {
           mainElement = document.querySelector('.main');
     renderElement(mainElement, todoListElement, insertPosition.BEFOREEND );
 
-    const inputFormComponent = new InputFormComponent();
-    const inputFormElement = inputFormComponent.getElement();
+    const inputFormComponent = new InputFormComponent(),
+          inputFormElement = inputFormComponent.getElement();
     inputFormComponent.addEventListeners();
-    renderElement(mainElement, inputFormElement, insertPosition.BEFOREBEGIN)
+    renderElement(mainElement, inputFormElement, insertPosition.BEFOREBEGIN);
 
   }
 }
