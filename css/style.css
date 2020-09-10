@@ -11,21 +11,33 @@
 }
 .main {
     font-family: Arial, sans-serif;
-    width: 700px;
+    width: 1200px;
     height: auto;
     margin: auto;
     background: linear-gradient(#e66465, #9198e5);
 }
 .todo-list {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0 0 auto;
+    flex-wrap: wrap;
     padding: 1rem;
 }
+.tooltip {
+    display: none;
+    color: darkred;
+    font-weight: bold;
+
+}
 .todo-item {
+    width: 25%;
     list-style: none;
-    padding: 10px 0;
+    border: 1px solid #FFFFFF;
+    padding: 10px 10px;
+    overflow: hidden;
     color: #fff;
-    font-size: 30px;
+    font-size: 20px;
+    margin: 5px 10%;
 }
 .container {
     padding: 20px;

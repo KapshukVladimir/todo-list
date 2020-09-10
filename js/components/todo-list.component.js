@@ -14,7 +14,7 @@ export class TodoListComponent extends AbstractComponent {
   _render() {
     this.getElement().innerHTML = "";
     this.tasks.forEach((value,id) => {
-      const todoItemComponent = new TodoItemComponent(value, id, value.timeCreated);
+      const todoItemComponent = new TodoItemComponent(value, id, value.timeCreated, value.timeDeadline);
       const todoItemElement = todoItemComponent.getElement();
       renderElement(this.getElement(), todoItemElement, insertPosition.BEFOREEND);
     });

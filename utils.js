@@ -22,7 +22,11 @@ export const insertPosition = {
 
 export function getTimeCreated() {
   let timeCreated = new Date();
-  return `${timeCreated.getHours()}:${timeCreated.getMinutes()}:${timeCreated.getSeconds()}`;
+  return `${timeCreated.getDate()}.${timeCreated.getMonth() + 1}.${timeCreated.getFullYear()}`;
+}
+export function getTimeDeadline() {
+  let timeCreated = new Date();
+  return `${timeCreated.getDate() + 1}.${timeCreated.getMonth() + 1}.${timeCreated.getFullYear()}`;
 }
 
 export function uniqueId() {

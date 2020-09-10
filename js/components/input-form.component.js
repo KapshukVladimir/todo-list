@@ -13,13 +13,20 @@ export class InputFormComponent extends AbstractComponent {
     if (event.keyCode === ENTER_KEY) {
       event.preventDefault();
       let taskTitle = this.getElement().firstChild.value;
-      addTask({taskTitle});
-      this.getElement().firstChild.value = "";
+      if (/[a-zа-я0-1]+$/i.test(taskTitle)){
+        addTask({taskTitle});
+        document.querySelector('.tooltip').style.display = 'none';
+        this.getElement().firstChild.value = "";
+      } else {
+        document.querySelector('.tooltip').style.display = 'block';
+        this.getElement().firstChild.value = "";
+      }
+
     }
   }
 
   _getTemplate() {
-    return (`<form class="todo-form"><input type="text"></form>`)
+    return (`<form class="todo-form"><input class="form-input" type="text"><span class="tooltip">No special symbols allowed</form>`)
   }
 
   addEventListeners() {
