@@ -76,3 +76,40 @@ body {
     padding: 5px;
     margin: 13px 0 0 10px;
 }
+.modal-wrapper {
+    display: none;
+    background: rgba(255, 255, 255, .9);
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    top: calc(50% - 200px);
+    left: calc(50% - 300px);
+    z-index: 10;
+}
+.close-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+.close-modal-btn {
+    cursor: pointer;
+    background: #ff2400;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    color: #fff;
+    margin: 10px;
+    font-size: 20px;
+}
+.overlay {
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(0, 0, 0, .5);
+}

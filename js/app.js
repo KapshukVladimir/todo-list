@@ -2,7 +2,6 @@ import { HeaderComponent } from "./components/header.component.js";
 import { renderElement, insertPosition } from "../utils.js";
 import { TodoListComponent } from "./components/todo-list.component.js";
 import { InputFormComponent } from './components/input-form.component.js';
-import {PlusButtonComponent} from "./components/plus-button.component.js";
 
 export class AppComponent {
 

@@ -19,3 +19,4 @@ export function emitEvent(type, data) {
   window.dispatchEvent(new CustomEvent(type, data));
 }
 
+
