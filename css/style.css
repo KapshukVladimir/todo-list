@@ -86,6 +86,16 @@ body {
     left: calc(50% - 300px);
     z-index: 10;
 }
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: center;
+    margin: 0 auto;
+}
+.modal-form input, button {
+    margin: 5px 0;
+}
 .close-wrapper {
     display: flex;
     justify-content: flex-end;

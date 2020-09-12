@@ -10,8 +10,8 @@ export let taskData = [
 
 export function addTask(task) {
   task.id = uniqueId();
-  task.timeCreated = getTimeCreated();
-  task.timeDeadline = getTimeDeadline();
+  task.timeCreated = task.timeCreated || getTimeCreated();
+  task.timeDeadline = task.timeDeadline || getTimeDeadline();
   taskData.push(task);
   emitEvent('update-tasks', task);
 }

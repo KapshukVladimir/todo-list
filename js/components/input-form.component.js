@@ -5,7 +5,6 @@ import { VALIDATION_MESSAGE } from "../../utils.js";
 import { PlusButtonComponent } from "./plus-button.component.js";
 import { insertPosition, renderElement } from "../../utils.js";
 
-
 export class InputFormComponent extends AbstractComponent {
 
   constructor() {
@@ -17,7 +16,6 @@ export class InputFormComponent extends AbstractComponent {
           plusButtonElement = plusButtonComponent.getElement();
     plusButtonComponent.addEventListeners(); // 3 потом это
     renderElement(this.getElement(), plusButtonElement, insertPosition.BEFOREEND);
-
   }
 
   _newTask(event) {
@@ -53,3 +51,4 @@ export class InputFormComponent extends AbstractComponent {
     this.getElement().addEventListener('keypress', this._newTask.bind(this));
   }
 }
+

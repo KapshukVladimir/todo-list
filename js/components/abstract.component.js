@@ -1,6 +1,5 @@
 import { createElement } from "../../utils.js";
 
-
 export class AbstractComponent {
 
   constructor() {

@@ -11,10 +11,13 @@ export class PlusButtonComponent extends AbstractComponent {
   _afterCreate() {
     const modalWindowComponent = new ModalWindowComponent(),
           modalWindowElement = modalWindowComponent.getElement();
+
     renderElement(this.getElement(), modalWindowElement, insertPosition.BEFOREEND);
     const overlay = document.createElement('div');
     overlay.classList.add('overlay');
     renderElement(this.getElement(), overlay, insertPosition.BEFOREEND);
+
+    modalWindowComponent.addEventListeners();
 
     const closeModalComponent = new CloseModalComponent(),
           closeModalElement = closeModalComponent.getElement();
@@ -29,12 +32,11 @@ export class PlusButtonComponent extends AbstractComponent {
   _closeModal() {
     this.getElement().lastChild.previousElementSibling.style.display = "none";
     this.getElement().lastChild.style.display = 'none';
-    console.log(this.getElement().lastChild)
   }
 
   addEventListeners() { // 1 сначала это
     this.getElement().firstChild.addEventListener('click', this._showModal.bind(this));
-    this.getElement().lastChild.previousSibling.firstChild.addEventListener('click', this._closeModal.bind(this));
+    this.getElement().lastChild.previousSibling.firstChild.firstChild.addEventListener('click', this._closeModal.bind(this));
     this.getElement().lastChild.addEventListener('click', this._closeModal.bind(this));
   }
 
