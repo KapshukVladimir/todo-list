@@ -26,8 +26,15 @@ export function taskDone(task) {
   emitEvent('update-tasks', task);
 }
 
+export function deleteTask(task) {
+  taskData = taskData.filter(t => t.id !== task.id);
+  console.log(taskData);
+
+  emitEvent('delete-task', task);
+}
 
 export function emitEvent(type, data) {
+  console.log(taskData);
   window.dispatchEvent(new CustomEvent(type, data));
 }
 
