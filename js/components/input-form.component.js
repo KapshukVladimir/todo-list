@@ -26,7 +26,8 @@ export class InputFormComponent extends AbstractComponent {
       const regExp = /[a-zа-я0-1]+$/i;
 
       if (regExp.test(taskTitle.value)){
-          addTask({taskTitle: taskTitle.value});
+          addTask({taskTitle: taskTitle.value, isChecked: false});
+
           document.querySelector('.tooltip').style.visibility = 'hidden';
           document.querySelector('.form-input').style.outline = "1px solid #000";
           taskTitle.value = "";

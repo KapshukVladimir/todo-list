@@ -9,10 +9,11 @@ export class ModalWindowComponent extends AbstractComponent {
   _isValidate() {
     let newTaskTitle = this.getTaskTitle().value,
       newCreationDate = this.getCreationDate().value,
-      newExpirationDate = this.getExpirationDate().value;
+      newExpirationDate = this.getExpirationDate().value,
+      newIsChecked = false;
 
     if (newTaskTitle !== '' && newCreationDate !== '' && newExpirationDate !== '') {
-      return {newTaskTitle, newCreationDate, newExpirationDate}
+      return {newTaskTitle, newCreationDate, newExpirationDate, newIsChecked: false}
     }else {
      return false;
     }
@@ -25,7 +26,8 @@ export class ModalWindowComponent extends AbstractComponent {
       addTask({
         taskTitle: this._isValidate().newTaskTitle,
         timeCreated: this._isValidate().newCreationDate,
-        timeDeadline: this._isValidate().newExpirationDate
+        timeDeadline: this._isValidate().newExpirationDate,
+        isChecked: this._isValidate().newIsChecked
       });
       this.getElement().lastChild.previousSibling.reset();
       this.getElement().style.display = 'none';

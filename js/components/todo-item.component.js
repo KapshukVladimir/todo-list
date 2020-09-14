@@ -8,7 +8,6 @@ export class TodoItemComponent extends AbstractComponent {
     this._id = taskIndex + 1;
     this._timeCreated = taskTimeCreated;
     this._timeDeadline = taskTimeDeadline;
-
   }
 
   _getTemplate() {

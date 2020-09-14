@@ -2,7 +2,7 @@ import { AbstractComponent } from './abstract.component.js';
 import { renderElement, insertPosition } from "../../utils.js";
 import { TodoItemComponent } from './todo-item.component.js';
 import { taskData } from '../../services/task.services.js';
-
+import { CheckBoxComponent } from "./check-box.component.js";
 
 export class TodoListComponent extends AbstractComponent {
 
@@ -10,13 +10,25 @@ export class TodoListComponent extends AbstractComponent {
     super();
     this.tasks = taskData;
   }
-
   _render() {
     this.getElement().innerHTML = "";
     this.tasks.forEach((value,id) => {
       const todoItemComponent = new TodoItemComponent(value, id, value.timeCreated, value.timeDeadline);
       const todoItemElement = todoItemComponent.getElement();
       renderElement(this.getElement(), todoItemElement, insertPosition.BEFOREEND);
+
+      const checkBoxComponent = new CheckBoxComponent(value),
+        checkBoxElement = checkBoxComponent.getElement();
+      renderElement(todoItemElement, checkBoxElement, insertPosition.BEFOREBEGIN);
+
+      checkBoxComponent.addEventListeners();
+
+      if (!value.isChecked) {
+        todoItemElement.style.opacity = '1';
+        checkBoxComponent.getElement().checked = false;
+      }else {
+        todoItemElement.style.opacity = '.3';
+      }
     });
   }
 
@@ -25,7 +37,8 @@ export class TodoListComponent extends AbstractComponent {
   }
 
   addEventListeners() {
-    window.addEventListener('update-tasks', this._dataChange.bind(this));
+    window.addEventListener('add-task', this._dataChange.bind(this));
+    window.addEventListener('update-tasks', this._dataChange.bind(this))
   }
 
   _afterCreate() {

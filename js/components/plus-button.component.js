@@ -1,6 +1,6 @@
 import {AbstractComponent} from "./abstract.component.js";
 import { ModalWindowComponent } from "./modal-window.component.js";
-import { renderElement, insertPosition} from "../../utils.js";
+import { renderElement, insertPosition } from "../../utils.js";
 import { CloseModalComponent } from "./close-modal.component.js";
 
 export class PlusButtonComponent extends AbstractComponent {
