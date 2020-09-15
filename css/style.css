@@ -11,39 +11,123 @@
 }
 .main {
     font-family: Arial, sans-serif;
-    width: 700px;
-    height: auto;
+
+    height: 100vh;
     margin: auto;
-    background: linear-gradient(#e66465, #9198e5);
+    background: url("../images/background.jpg") no-repeat;
+    background-size: cover;
 }
 .todo-list {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0 0 auto;
+    flex-wrap: wrap;
     padding: 1rem;
 }
+.tooltip {
+    visibility: hidden;
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: left;
+}
+
 .todo-item {
+    position: relative;
+    width: 25%;
     list-style: none;
-    padding: 10px 0;
-    color: #fff;
-    font-size: 30px;
+    border: 1px solid darkorange;
+    padding: 10px 10px;
+    overflow: hidden;
+    color: #000000;
+    font-size: 20px;
+    margin: 5px 10%;
+    background: rgba(255, 255, 255, .5);
+    border-radius: 10px;
+    opacity: 1;
+}
+.check-box {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+    opacity: 1;
+}
+.check-box[checked=true]{
+
 }
 .container {
     padding: 20px;
 }
+.form-container {
+    display: flex;
+    justify-content: center;
+}
 .todo-form {
-    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .todo-form input{
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     font-size: 30px;
     border: 5px solid rgba(255, 255, 255, .5);
-@include box-shadow(
-0 2px 2px rgba(0, 0, 0, .25) inset,
-0 2px 2px rgba(0, 0, 0, .25));
-@include border-radius(10px);
-    background: rgba(255, 255, 255, .5);
-@include appearance(none);
-    outline: none;
+    border-radius: 5px;
+    background: #cacaca;
     color: #FFF;
+}
+.plus-btn {
+    cursor: pointer;
+    font-size: 30px;
+    padding: 5px;
+    margin: 13px 0 0 10px;
+}
+.modal-wrapper {
+    display: none;
+    background: rgba(255, 255, 255, .9);
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    top: calc(50% - 200px);
+    left: calc(50% - 300px);
+    z-index: 10;
+}
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: center;
+    margin: 0 auto;
+}
+.modal-form input, button {
+    margin: 5px 0;
+}
+.close-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+.close-modal-btn {
+    cursor: pointer;
+    background: #ff2400;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    color: #fff;
+    margin: 10px;
+    font-size: 20px;
+}
+.overlay {
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(0, 0, 0, .5);
 }
