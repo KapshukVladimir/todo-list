@@ -11,13 +11,12 @@ export class PlusButtonComponent extends AbstractComponent {
   _afterCreate() {
     const modalWindowComponent = new ModalWindowComponent(),
           modalWindowElement = modalWindowComponent.getElement();
-
     renderElement(this.getElement(), modalWindowElement, insertPosition.BEFOREEND);
-    const overlay = document.createElement('div');
-    overlay.classList.add('overlay');
-    renderElement(this.getElement(), overlay, insertPosition.BEFOREEND);
-
     modalWindowComponent.addEventListeners();
+
+    window.overlay = document.createElement('div');
+    window.overlay.classList.add('overlay');
+    renderElement(this.getElement(), window.overlay, insertPosition.BEFOREEND);
 
     const closeModalComponent = new CloseModalComponent(),
           closeModalElement = closeModalComponent.getElement();

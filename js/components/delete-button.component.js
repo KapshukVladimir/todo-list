@@ -9,11 +9,7 @@ export class DeleteButtonComponent extends AbstractComponent {
   }
 
   _deleteItem() {
-    const answer = confirm('Delete the task ?');
-
-    if (answer) {
       deleteTask(this._deletedTask);
-    }
   }
 
   addEventListeners() {

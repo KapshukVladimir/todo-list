@@ -1,40 +1,35 @@
 import { AbstractComponent } from "./abstract.component.js";
-import {addTask} from "../../services/task.services.js";
+import { addTask } from "../../services/task.services.js";
 
 export class ModalWindowComponent extends AbstractComponent {
   constructor() {
     super();
   }
 
-  _isValidate() {
-    let newTaskTitle = this.getTaskTitle().value,
-      newCreationDate = this.getCreationDate().value,
-      newExpirationDate = this.getExpirationDate().value,
-      newIsChecked = false;
-
-    if (newTaskTitle !== '' && newCreationDate !== '' && newExpirationDate !== '') {
-      return {newTaskTitle, newCreationDate, newExpirationDate, newIsChecked: false}
-    }else {
-     return false;
-    }
+  _isValidate(task) {
+    return task.newTaskTitle !== '' && task.newCreationDate !== '' && task.newExpirationDate !== '';
   }
 
   _newTaskModal(event) {
     event.preventDefault();
 
-    if (this._isValidate()) {
+    const newTaskTitle = this.getTaskTitle().value,
+      newCreationDate = this.getCreationDate().value,
+      newExpirationDate = this.getExpirationDate().value,
+      newIsChecked = false;
+
+    if (this._isValidate({newTaskTitle, newCreationDate, newExpirationDate, newIsChecked: false})) {
       addTask({
-        taskTitle: this._isValidate().newTaskTitle,
-        timeCreated: this._isValidate().newCreationDate,
-        timeDeadline: this._isValidate().newExpirationDate,
-        isChecked: this._isValidate().newIsChecked
+        taskTitle: newTaskTitle,
+        timeCreated: newCreationDate,
+        timeDeadline: newExpirationDate,
+        isChecked: newIsChecked
       });
       this.getElement().lastChild.previousSibling.reset();
       this.getElement().style.display = 'none';
       this.getElement().nextElementSibling.style.display = 'none';
-    }else {
-      alert ('Wrong data');
     }
+    // сделать обработку ошибки
   }
 
   _cancelWindow(event) {

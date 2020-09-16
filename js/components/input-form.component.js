@@ -1,9 +1,6 @@
 import { AbstractComponent } from './abstract.component.js';
-import { addTask } from '../../services/task.services.js';
-import { ENTER_KEY } from "../../utils.js";
-import { VALIDATION_MESSAGE } from "../../utils.js";
 import { PlusButtonComponent } from "./plus-button.component.js";
-import { insertPosition, renderElement } from "../../utils.js";
+import { insertPosition, renderElement, formValidator, VALIDATION_MESSAGE, ENTER_KEY } from "../../utils.js";
 
 export class InputFormComponent extends AbstractComponent {
 
@@ -22,20 +19,9 @@ export class InputFormComponent extends AbstractComponent {
 
     if (event.keyCode === ENTER_KEY) {
       event.preventDefault();
-      let taskTitle = this.getElement().firstChild.nextSibling[0];
+      const taskTitle = this.getElement().firstChild.nextSibling[0];
       const regExp = /[a-zа-я0-1]+$/i;
-
-      if (regExp.test(taskTitle.value)){
-          addTask({taskTitle: taskTitle.value, isChecked: false});
-
-          document.querySelector('.tooltip').style.visibility = 'hidden';
-          document.querySelector('.form-input').style.outline = "1px solid #000";
-          taskTitle.value = "";
-      } else {
-        document.querySelector('.tooltip').style.visibility = 'visible';
-        document.querySelector('.form-input').style.outline = "1px solid red";
-        taskTitle.value = "";
-      }
+      formValidator(taskTitle, regExp);
     }
   }
 

@@ -1,3 +1,5 @@
+import { addTask } from './services/task.services.js';
+
 export function renderElement(container, element, position) {
 
   switch (position) {
@@ -20,13 +22,51 @@ export const insertPosition = {
   BEFOREEND: 'beforeend'
 };
 
-export function getTimeCreated() {
-  let timeCreated = new Date();
-  return `${timeCreated.getDate()}.${timeCreated.getMonth() + 1}.${timeCreated.getFullYear()}`;
+export function formValidator(taskTitle, regExp) {
+
+  if (regExp.test(taskTitle.value)){
+    addTask({taskTitle: taskTitle.value, isChecked: false});
+    toolTipUpdater({visibility: 'hidden', outline: '1px solid #000'});
+    taskTitle.value = "";
+  } else {
+    toolTipUpdater({visibility: 'visible', outline: '1px solid red'});
+    taskTitle.value = "";
+  }
 }
+
+export function toolTipUpdater({visibility, outline}) {
+  document.querySelector('.tooltip').style.visibility = visibility;
+  document.querySelector('.form-input').style.outline = outline;
+}
+
+export function setOpacityToLi(element,opacity) {
+  element.style.opacity = opacity;
+}
+
+export function getTimeCreated() {
+  const timeCreated = new Date();
+  let timeCreatedMonth = timeCreated.getMonth() + 1;
+  if (+timeCreatedMonth < 10) {
+    timeCreatedMonth = "0" + timeCreatedMonth
+  }
+  let timeCreatedDay = timeCreated.getDate();
+  if (+timeCreatedDay < 10) {
+    timeCreatedDay = "0" + timeCreatedDay
+  }
+  return `${timeCreated.getFullYear()}-${timeCreatedMonth}-${timeCreatedDay}`;
+}
+
 export function getTimeDeadline() {
-  let timeDeadLine = new Date();
-  return `${timeDeadLine.getDate() + 1}.${timeDeadLine.getMonth() + 1}.${timeDeadLine.getFullYear()}`;
+  const timeDeadline = new Date();
+  let timeCreatedMonth = timeDeadline.getMonth() + 1;
+  if (+timeCreatedMonth < 10) {
+    timeCreatedMonth = "0" + timeCreatedMonth
+  }
+  let timeCreatedDay = timeDeadline.getDate() + 1;
+  if (+timeCreatedDay < 10) {
+    timeCreatedDay = "0" + timeCreatedDay
+  }
+  return `${timeDeadline.getFullYear()}-${timeCreatedMonth}-${timeCreatedDay}`;
 }
 
 export function uniqueId() {
@@ -34,4 +74,5 @@ export function uniqueId() {
 }
 
 export const ENTER_KEY = 13,
-  VALIDATION_MESSAGE = 'Please, use only string and number symbols';
+  VALIDATION_MESSAGE = 'Please, use only string and number symbols',
+  MAIN_ELEMENT = document.querySelector('.main');
