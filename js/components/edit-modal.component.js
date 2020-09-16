@@ -16,7 +16,7 @@ export class EditModalComponent extends AbstractComponent {
     return document.querySelector('.close-edit');
   }
   _createEditedTask () {
-    return {id: this._task.id, taskTitle: this.getTaskTitleBtn().value, timeCreated: this.getEditTimeCreated().value, timeDeadline: this.getEditTimeDeadline().value}
+    return {id: this._task.id, taskTitle: this.getTaskTitle().value, timeCreated: this.getEditTimeCreated().value, timeDeadline: this.getEditTimeDeadline().value}
   }
   getEditTimeCreated(){
     return document.querySelector('.edit-time-created');
@@ -24,19 +24,27 @@ export class EditModalComponent extends AbstractComponent {
   getEditTimeDeadline(){
     return document.querySelector('.edit-time-deadline');
   }
+  _cancelEditTask() {
+    this.getForm().reset();
+  }
   _editTaskUpdate() {
-
     editTask(this._createEditedTask());
+    this._closeModal();
   }
 
   getSaveEditBtn() {
     return document.querySelector('.save-edit');
   }
 
-  getTaskTitleBtn() {
+  getTaskTitle() {
     return document.querySelector('.input-text-edit');
   }
-
+  getCancelEditBtn() {
+    return document.querySelector('.cancel-edit');
+  }
+  getForm() {
+    return document.querySelector('.modal-form');
+  }
   addEventListeners(){
     this.getCloseButton().addEventListener('click', this._closeModal.bind(this));
     window.overlay.addEventListener('click', () => {
@@ -44,6 +52,7 @@ export class EditModalComponent extends AbstractComponent {
       this._destroyed()
     });
     this.getSaveEditBtn().addEventListener('click', this._editTaskUpdate.bind(this));
+    this.getCancelEditBtn().addEventListener('click', this._cancelEditTask.bind(this));
   }
 
   _destroyed() {
@@ -58,7 +67,7 @@ export class EditModalComponent extends AbstractComponent {
                     <input type="date" value="${this._task.timeCreated}"  class="edit-time-created">
                     <input type="date" value="${this._task.timeDeadline}" class="edit-time-deadline">
                     <button type="button" class="save-edit">Save</button>
-                    <button class="cancel-edit">Cancel</button>
+                    <button type="button" class="cancel-edit">Cancel</button>
                 </form>
             </div>`)
   }

@@ -17,13 +17,11 @@ export function addTask(task) {
 }
 
 export function editTask(task) {
-  console.log(task);
   const taskIndex = taskData.findIndex(el => el.id === task.id);
   if (taskIndex !== -1) {
     taskData.splice(taskIndex, 1, task);
   }
   emitEvent('edit-task', task);
-  console.log(taskData, "changed");
 }
 
 export function taskDone(task) {
