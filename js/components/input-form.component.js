@@ -1,6 +1,6 @@
 import { AbstractComponent } from './abstract.component.js';
-import { PlusButtonComponent } from "./plus-button.component.js";
-import { insertPosition, renderElement, formValidator, VALIDATION_MESSAGE, ENTER_KEY } from "../../utils.js";
+import { PlusButtonComponent } from './plus-button.component.js';
+import { insertPosition, renderElement, formValidator, VALIDATION_MESSAGE, ENTER_KEY } from '../../utils.js';
 
 export class InputFormComponent extends AbstractComponent {
 
@@ -8,7 +8,6 @@ export class InputFormComponent extends AbstractComponent {
     super();
   }
   _afterCreate() {
-
     const plusButtonComponent = new PlusButtonComponent(),
           plusButtonElement = plusButtonComponent.getElement();
     plusButtonComponent.addEventListeners(); // 3 потом это

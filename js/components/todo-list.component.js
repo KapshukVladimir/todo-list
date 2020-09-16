@@ -5,7 +5,7 @@ import { taskData } from '../../services/task.services.js';
 import { CheckBoxComponent } from './check-box.component.js';
 import { DeleteButtonComponent } from './delete-button.component.js';
 import { EditButtonComponent } from './edit-button.component.js';
-import { EditModalComponent } from './edit-modal.component.js';
+
 
 
 export class TodoListComponent extends AbstractComponent {
@@ -14,10 +14,11 @@ export class TodoListComponent extends AbstractComponent {
     super();
     this.tasks = taskData;
   }
-  _render() {
+
+  _render(arrayTasks) {
     this.getElement().innerHTML = "";
 
-    this.tasks.forEach((value) => {
+    arrayTasks.forEach((value) => {
       const todoItemComponent = new TodoItemComponent(value);
       const todoItemElement = todoItemComponent.getElement();
       renderElement(this.getElement(), todoItemElement, insertPosition.BEFOREEND);
@@ -25,7 +26,6 @@ export class TodoListComponent extends AbstractComponent {
       const checkBoxComponent = new CheckBoxComponent(value),
         checkBoxElement = checkBoxComponent.getElement();
       renderElement(todoItemElement, checkBoxElement, insertPosition.BEFOREBEGIN);
-
       checkBoxComponent.addEventListeners();
 
       if (!value.isChecked) {
@@ -44,11 +44,9 @@ export class TodoListComponent extends AbstractComponent {
             editButtonElement = editButtonComponent.getElement();
       renderElement(todoItemElement, editButtonElement, insertPosition.BEFOREBEGIN);
       editButtonComponent.addEventListeners();
-
     })
 
   }
-
 
   _getTemplate() {
     return (`<ul class="todo-list"></ul>`);
@@ -59,16 +57,25 @@ export class TodoListComponent extends AbstractComponent {
     window.addEventListener('update-tasks', this._dataChange.bind(this));
     window.addEventListener('delete-task', this._dataChange.bind(this));
     window.addEventListener('edit-task', this._dataChange.bind(this));
-
+    window.addEventListener('show-active', this._dataChange.bind(this));
+    window.addEventListener('show-completed', this._dataChange.bind(this));
+    window.addEventListener('show-all', this._dataChange.bind(this));
+    window.addEventListener('clear-completed', this._dataChange.bind(this));
   }
 
   _afterCreate() {
     this.addEventListeners();
-    this._render();
+    this._render(this.tasks);
   }
 
-  _dataChange() {
-    this.tasks = taskData;
-    this._render();
+  _dataChange(event) {
+
+    if (event.detail) {
+      this.tasks = taskData;
+      this._render(event.detail);
+    }else {
+      this.tasks = taskData;
+      this._render(this.tasks);
+    }
   }
 }

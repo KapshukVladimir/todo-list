@@ -1,5 +1,4 @@
 import { AbstractComponent } from './abstract.component.js';
-
 import { editTask } from '../../services/task.services.js';
 
 export class EditModalComponent extends AbstractComponent {
@@ -7,26 +6,33 @@ export class EditModalComponent extends AbstractComponent {
     super();
     this._task = task;
   }
+
   _closeModal(event) {
     this.getElement().style.display = 'none';
     window.overlay.style.display = "none";
     this._destroyed();
   }
+
   getCloseButton() {
     return document.querySelector('.close-edit');
   }
+
   _createEditedTask () {
     return {id: this._task.id, taskTitle: this.getTaskTitle().value, timeCreated: this.getEditTimeCreated().value, timeDeadline: this.getEditTimeDeadline().value}
   }
+
   getEditTimeCreated(){
     return document.querySelector('.edit-time-created');
   }
+
   getEditTimeDeadline(){
     return document.querySelector('.edit-time-deadline');
   }
+
   _cancelEditTask() {
     this.getForm().reset();
   }
+
   _editTaskUpdate() {
     editTask(this._createEditedTask());
     this._closeModal();
@@ -39,12 +45,15 @@ export class EditModalComponent extends AbstractComponent {
   getTaskTitle() {
     return document.querySelector('.input-text-edit');
   }
+
   getCancelEditBtn() {
     return document.querySelector('.cancel-edit');
   }
+
   getForm() {
     return document.querySelector('.modal-form');
   }
+
   addEventListeners(){
     this.getCloseButton().addEventListener('click', this._closeModal.bind(this));
     window.overlay.addEventListener('click', () => {
@@ -67,7 +76,7 @@ export class EditModalComponent extends AbstractComponent {
                     <input type="date" value="${this._task.timeCreated}"  class="edit-time-created">
                     <input type="date" value="${this._task.timeDeadline}" class="edit-time-deadline">
                     <button type="button" class="save-edit">Save</button>
-                    <button type="button" class="cancel-edit">Cancel</button>
+                    <button type="reset" class="cancel-edit">Cancel</button>
                 </form>
             </div>`)
   }

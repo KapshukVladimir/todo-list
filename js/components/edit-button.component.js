@@ -1,6 +1,6 @@
 import { AbstractComponent } from './abstract.component.js';
-import {EditModalComponent} from "./edit-modal.component.js";
-import {insertPosition, renderElement} from "../../utils.js";
+import { EditModalComponent } from './edit-modal.component.js';
+import { insertPosition, renderElement } from '../../utils.js';
 
 
 export class EditButtonComponent extends AbstractComponent{
@@ -10,7 +10,6 @@ export class EditButtonComponent extends AbstractComponent{
   }
 
   _showEditModal() {
-
     const editModalComponent = new EditModalComponent(this._task),
       editModalElement = editModalComponent.getElement(),
       bodyElement = document.querySelector('body');

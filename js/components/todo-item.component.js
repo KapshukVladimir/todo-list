@@ -9,7 +9,6 @@ export class TodoItemComponent extends AbstractComponent {
     this._timeDeadline = task.timeDeadline;
   }
 
-
   _getTemplate() {
     return (`<li class="todo-item">
                 <h2 class="task-title">${this._title}</h2>

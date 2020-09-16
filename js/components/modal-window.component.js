@@ -1,10 +1,7 @@
-import { AbstractComponent } from "./abstract.component.js";
-import { addTask } from "../../services/task.services.js";
+import { AbstractComponent } from './abstract.component.js';
+import { addTask } from '../../services/task.services.js';
 
 export class ModalWindowComponent extends AbstractComponent {
-  constructor() {
-    super();
-  }
 
   _isValidate(task) {
     return task.newTaskTitle !== '' && task.newCreationDate !== '' && task.newExpirationDate !== '';

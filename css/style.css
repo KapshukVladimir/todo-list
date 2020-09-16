@@ -110,6 +110,18 @@
 .container {
     padding: 20px;
 }
+.block-buttons {
+    display: flex;
+    width: 1000px;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+.block-buttons button {
+    width: 100px;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
 .form-container {
     display: flex;
     justify-content: center;

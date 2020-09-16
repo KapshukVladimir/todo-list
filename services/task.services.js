@@ -3,7 +3,7 @@ import { getTimeCreated, getTimeDeadline, uniqueId } from '../utils.js'
 export let taskData = [
   { id: 1, taskTitle: 'Купить картошку.', timeCreated: getTimeCreated(), timeDeadline: getTimeDeadline(), isChecked: false},
   { id: 2, taskTitle: 'Купить сыр.' , timeCreated: getTimeCreated(), timeDeadline: getTimeDeadline(), isChecked: false},
-  { id: 3, taskTitle: 'Купить морковку.', timeCreated: getTimeCreated(), timeDeadline: getTimeDeadline(), isChecked: false},
+  { id: 3, taskTitle: 'Купить морковку.', timeCreated: getTimeCreated(), timeDeadline: getTimeDeadline(), isChecked: true},
   { id: 4, taskTitle: 'Купить мясо.', timeCreated: getTimeCreated(), timeDeadline: getTimeDeadline(), isChecked: false},
   { id: 5, taskTitle: 'Вкусно поесть!', timeCreated: getTimeCreated(), timeDeadline: getTimeDeadline(), isChecked: false},
 ];
@@ -34,6 +34,26 @@ export function taskDone(task) {
   });
 
   emitEvent('update-tasks', task);
+}
+
+export function showAllTasks() {
+  emitEvent('show-all');
+}
+
+export function showActiveTasks() {
+  let sorted = taskData.filter(el => !el.isChecked);
+  emitEvent('show-active', {detail: sorted});
+}
+
+export function showCompletedTasks() {
+  let sorted = taskData.filter(el => el.isChecked);
+  emitEvent('show-completed', {detail: sorted});
+
+}
+
+export function clearCompletedTasks() {
+  taskData = taskData.filter(task => task.isChecked === false);
+  emitEvent('clear-completed', {detail: taskData});
 }
 
 export function deleteTask(task) {
