@@ -21,7 +21,19 @@ export function sortByText() {
   });
   emitEvent('sort-by-text', taskData);
 }
+export function sortByDate() {
+  taskData = taskData.sort((a, b) => {
+    let dateA = a.timeCreated,
+      dateB = b.timeCreated;
 
+    if (dateA < dateB) {
+      return - 1;
+    } else if (dateA > dateB) {
+      return 1
+    }
+  });
+  emitEvent('sort-by-date', taskData);
+}
 
 export function addTask(task) {
   task.id = uniqueId();

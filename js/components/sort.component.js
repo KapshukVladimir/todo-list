@@ -1,11 +1,13 @@
 import { AbstractComponent } from './abstract.component.js';
-import { sortByText } from '../../services/task.services.js';
+import { sortByText, sortByDate } from '../../services/task.services.js';
 
 export class SortComponent extends AbstractComponent {
 
   _sortByText() {
     if (this.getTextOption().value === 'sort-text') {
       sortByText();
+    }else if (this.getTextOption().value === 'sort-date') {
+      sortByDate();
     }
   }
 
