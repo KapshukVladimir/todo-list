@@ -7,7 +7,7 @@ export class EditModalComponent extends AbstractComponent {
     this._task = task;
   }
 
-  _closeModal(event) {
+  _closeModal() {
     this.getElement().style.display = 'none';
     window.overlay.style.display = "none";
     this._destroyed();

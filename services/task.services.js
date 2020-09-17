@@ -45,6 +45,7 @@ export function addTask(task) {
 
 export function editTask(task) {
   const taskIndex = taskData.findIndex(el => el.id === task.id);
+
   if (taskIndex !== -1) {
     taskData.splice(taskIndex, 1, task);
   }

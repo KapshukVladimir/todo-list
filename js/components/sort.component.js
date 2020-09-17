@@ -1,22 +1,22 @@
 import { AbstractComponent } from './abstract.component.js';
 import { sortByText, sortByDate } from '../../services/task.services.js';
+import { sortType } from '../../utils.js';
 
 export class SortComponent extends AbstractComponent {
 
-  _sortByText() {
-    if (this.getTextOption().value === 'sort-text') {
-      sortByText();
-    }else if (this.getTextOption().value === 'sort-date') {
-      sortByDate();
-    }
+  _sortItems() {
+    const prop =  this.getTextOption().value;
+    return prop === sortType.BY_TEXT ? sortByText()
+        : prop === sortType.BY_TEXT ? sortByDate()
+        : null;
   }
 
   getTextOption() {
-    return document.querySelector('.select')
+    return document.querySelector('.select');
   }
 
   addEventListeners() {
-    this.getTextOption().addEventListener('change', this._sortByText.bind(this));
+    this.getTextOption().addEventListener('change', this._sortItems.bind(this));
   }
 
   _getTemplate() {

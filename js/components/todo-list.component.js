@@ -5,8 +5,8 @@ import { taskData } from '../../services/task.services.js';
 import { CheckBoxComponent } from './check-box.component.js';
 import { DeleteButtonComponent } from './delete-button.component.js';
 import { EditButtonComponent } from './edit-button.component.js';
-
-
+import { SortComponent } from './sort.component.js';
+import {MAIN_ELEMENT} from '../../utils.js';
 
 export class TodoListComponent extends AbstractComponent {
 
@@ -36,16 +36,15 @@ export class TodoListComponent extends AbstractComponent {
       }
 
       const deleteButtonComponent = new DeleteButtonComponent(value),
-            deleteButtonElement = deleteButtonComponent.getElement();
+        deleteButtonElement = deleteButtonComponent.getElement();
       renderElement(todoItemElement, deleteButtonElement, insertPosition.BEFOREBEGIN);
       deleteButtonComponent.addEventListeners();
 
       const editButtonComponent = new EditButtonComponent(value),
-            editButtonElement = editButtonComponent.getElement();
+        editButtonElement = editButtonComponent.getElement();
       renderElement(todoItemElement, editButtonElement, insertPosition.BEFOREBEGIN);
       editButtonComponent.addEventListeners();
     })
-
   }
 
   _getTemplate() {
@@ -68,6 +67,11 @@ export class TodoListComponent extends AbstractComponent {
   _afterCreate() {
     this.addEventListeners();
     this._render(this.tasks);
+
+    const sortComponent = new SortComponent(),
+      sortElement = sortComponent.getElement();
+    renderElement(MAIN_ELEMENT, sortElement, insertPosition.BEFOREBEGIN);
+    sortComponent.addEventListeners();
   }
 
   _dataChange(event) {

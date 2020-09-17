@@ -1,6 +1,7 @@
 import { AbstractComponent } from './abstract.component.js';
 import { PlusButtonComponent } from './plus-button.component.js';
-import { insertPosition, renderElement, formValidator, VALIDATION_MESSAGE, ENTER_KEY } from '../../utils.js';
+import { insertPosition, renderElement, formValidator, VALIDATION_MESSAGE, ENTER_KEY, regExp } from '../../utils.js';
+
 
 export class InputFormComponent extends AbstractComponent {
 
@@ -19,7 +20,7 @@ export class InputFormComponent extends AbstractComponent {
     if (event.keyCode === ENTER_KEY) {
       event.preventDefault();
       const taskTitle = this.getElement().firstChild.nextSibling[0];
-      const regExp = /[a-zа-я0-1]+$/i;
+
       formValidator(taskTitle, regExp);
     }
   }

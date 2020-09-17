@@ -1,32 +1,33 @@
 import { AbstractComponent } from './abstract.component.js';
 import { addTask } from '../../services/task.services.js';
+import { formStyle } from '../../utils.js';
 
 export class ModalWindowComponent extends AbstractComponent {
 
   _isValidate(task) {
-    return task.newTaskTitle !== '' && task.newCreationDate !== '' && task.newExpirationDate !== '';
+    return task.taskTitle !== '' && task.timeCreated !== '' && task.timeDeadline !== '';
   }
 
   _newTaskModal(event) {
     event.preventDefault();
 
-    const newTaskTitle = this.getTaskTitle().value,
-      newCreationDate = this.getCreationDate().value,
-      newExpirationDate = this.getExpirationDate().value,
-      newIsChecked = false;
+    const taskTitle = this.getTaskTitle().value,
+      timeCreated = this.getCreationDate().value,
+      timeDeadline = this.getExpirationDate().value,
+      isChecked = false,
+      formWrapper = this.getElement();
 
-    if (this._isValidate({newTaskTitle, newCreationDate, newExpirationDate, newIsChecked: false})) {
+    if (this._isValidate({taskTitle, timeCreated, timeDeadline, isChecked: false})) {
       addTask({
-        taskTitle: newTaskTitle,
-        timeCreated: newCreationDate,
-        timeDeadline: newExpirationDate,
-        isChecked: newIsChecked
+        taskTitle,
+        timeCreated,
+        timeDeadline,
+        isChecked
       });
-      this.getElement().lastChild.previousSibling.reset();
-      this.getElement().style.display = 'none';
-      this.getElement().nextElementSibling.style.display = 'none';
+      formStyle(formWrapper);
+    }else {
+      this.getTaskTitle().style.outline = '1px solid red';
     }
-    // сделать обработку ошибки
   }
 
   _cancelWindow(event) {

@@ -17,6 +17,15 @@
     background: url("../images/background.jpg") no-repeat;
     background-size: cover;
 }
+.error-message {
+    color: #ff2400;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
 .todo-list {
     display: flex;
     justify-content: flex-start;
@@ -148,11 +157,11 @@
     margin: 0 auto;
     cursor: pointer;
     background: lightblue;
-    color: cornflowerblue;
+    color: #000;
 }
 .select option {
     cursor: pointer;
-    color: cornflowerblue;
+    color: #000;
 }
 .plus-btn {
     cursor: pointer;

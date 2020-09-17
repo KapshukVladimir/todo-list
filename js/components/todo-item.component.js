@@ -2,11 +2,11 @@ import { AbstractComponent } from './abstract.component.js';
 
 export class TodoItemComponent extends AbstractComponent {
 
-  constructor(task) {
+  constructor({taskTitle, timeCreated, timeDeadline}) {
     super();
-    this._title = task.taskTitle;
-    this._timeCreated = task.timeCreated;
-    this._timeDeadline = task.timeDeadline;
+    this._title = taskTitle;
+    this._timeCreated = timeCreated;
+    this._timeDeadline = timeDeadline;
   }
 
   _getTemplate() {
