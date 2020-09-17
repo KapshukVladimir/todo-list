@@ -141,6 +141,19 @@
     background: #cacaca;
     color: #FFF;
 }
+.select {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    margin: 0 auto;
+    cursor: pointer;
+    background: lightblue;
+    color: cornflowerblue;
+}
+.select option {
+    cursor: pointer;
+    color: cornflowerblue;
+}
 .plus-btn {
     cursor: pointer;
     font-size: 30px;

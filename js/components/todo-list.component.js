@@ -61,6 +61,8 @@ export class TodoListComponent extends AbstractComponent {
     window.addEventListener('show-completed', this._dataChange.bind(this));
     window.addEventListener('show-all', this._dataChange.bind(this));
     window.addEventListener('clear-completed', this._dataChange.bind(this));
+    window.addEventListener('sort-by-text', this._dataChange.bind(this));
+    window.addEventListener('sort-by-date', this._dataChange.bind(this));
   }
 
   _afterCreate() {

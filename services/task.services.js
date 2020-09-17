@@ -8,6 +8,21 @@ export let taskData = [
   { id: 5, taskTitle: 'Вкусно поесть!', timeCreated: getTimeCreated(), timeDeadline: getTimeDeadline(), isChecked: false},
 ];
 
+export function sortByText() {
+  taskData = taskData.sort((a, b) => {
+    let propA = a.taskTitle.toLowerCase(),
+    propB = b.taskTitle.toLowerCase();
+
+    if (propA < propB) {
+      return - 1;
+    } else if (propA > propB) {
+      return 1
+    }
+  });
+  emitEvent('sort-by-text', taskData);
+}
+
+
 export function addTask(task) {
   task.id = uniqueId();
   task.timeCreated = task.timeCreated || getTimeCreated();
