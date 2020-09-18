@@ -21,6 +21,7 @@ export function sortByText() {
   });
   emitEvent('sort-by-text', taskData);
 }
+
 export function sortByDate() {
   taskData = taskData.sort((a, b) => {
     let dateA = a.timeCreated,

@@ -1,12 +1,11 @@
 import { AbstractComponent } from './abstract.component.js';
-import { renderElement, insertPosition, setOpacityToLi } from '../../utils.js';
+import { renderElement, insertPosition, setOpacityToLi, MAIN_ELEMENT } from '../../utils.js';
 import { TodoItemComponent } from './todo-item.component.js';
 import { taskData } from '../../services/task.services.js';
 import { CheckBoxComponent } from './check-box.component.js';
 import { DeleteButtonComponent } from './delete-button.component.js';
 import { EditButtonComponent } from './edit-button.component.js';
 import { SortComponent } from './sort.component.js';
-import {MAIN_ELEMENT} from '../../utils.js';
 
 export class TodoListComponent extends AbstractComponent {
 
@@ -22,6 +21,7 @@ export class TodoListComponent extends AbstractComponent {
 
     return todoItemElement;
   }
+
   renderCheckbox(value, todoEl) {
     const checkBoxComponent = new CheckBoxComponent(value),
           checkBoxElement = checkBoxComponent.getElement();
@@ -29,6 +29,7 @@ export class TodoListComponent extends AbstractComponent {
     checkBoxComponent.addEventListeners();
     return checkBoxElement;
   }
+
   renderDeleteButton(value, todoEl) {
     const deleteButtonComponent = new DeleteButtonComponent(value),
           deleteButtonElement = deleteButtonComponent.getElement();
@@ -36,13 +37,16 @@ export class TodoListComponent extends AbstractComponent {
     renderElement(todoEl, deleteButtonElement, insertPosition.BEFOREBEGIN);
     deleteButtonComponent.addEventListeners();
   }
+
   renderEditButton(value, todoEl) {
     const editButtonComponent = new EditButtonComponent(value),
           editButtonElement = editButtonComponent.getElement();
     renderElement(todoEl, editButtonElement, insertPosition.BEFOREBEGIN);
     editButtonComponent.addEventListeners();
   }
+
   setOpacity({todoElement, checkbox, isChecked}) {
+
     if (!isChecked) {
       setOpacityToLi(todoElement,'1');
       checkbox.checked = false;
@@ -55,12 +59,12 @@ export class TodoListComponent extends AbstractComponent {
 
     arrayTasks.forEach((value) => {
       const todoElement = this.getTodoElement(value),
-            checkbox = this.renderCheckbox(value, todoElement),
-            opacityProps = {
-              todoElement,
-              checkbox,
-              isChecked: value.isChecked
-          };
+        checkbox = this.renderCheckbox(value, todoElement),
+        opacityProps = {
+          todoElement,
+          checkbox,
+          isChecked: value.isChecked
+        };
       this.renderDeleteButton(value, todoElement);
 
       this.setOpacity(opacityProps);

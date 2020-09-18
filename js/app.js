@@ -6,9 +6,6 @@ import { BlockButtonsComponent } from './components/block-buttons.component.js';
 export class AppComponent {
 
   init() {
-    //Инициализация всех компонентов (new)
-
-
     const todoListComponent = new TodoListComponent(),
       todoListElement = todoListComponent.getElement();
     renderElement(MAIN_ELEMENT, todoListElement, insertPosition.BEFOREEND );
@@ -22,7 +19,5 @@ export class AppComponent {
           inputFormElement = inputFormComponent.getElement();
     inputFormComponent.addEventListeners();
     renderElement(MAIN_ELEMENT, inputFormElement, insertPosition.BEFOREBEGIN);
-
-
   }
 }

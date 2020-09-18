@@ -27,11 +27,6 @@ export const insertPosition = {
   BEFOREEND: 'beforeend'
 };
 
-// export const sortType = {
-//   BY_TEXT: 'sort-text',
-//   BY_DATE: 'sort-date'
-// };
-
 export function formValidator(taskTitle, regExp) {
 
   if (regExp.test(taskTitle.value)){
