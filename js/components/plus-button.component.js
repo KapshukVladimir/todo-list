@@ -1,23 +1,19 @@
-import {AbstractComponent} from "./abstract.component.js";
-import { ModalWindowComponent } from "./modal-window.component.js";
-import { renderElement, insertPosition } from "../../utils.js";
-import { CloseModalComponent } from "./close-modal.component.js";
+import { AbstractComponent } from './abstract.component.js';
+import { ModalWindowComponent } from './modal-window.component.js';
+import { renderElement, insertPosition } from '../../utils.js';
+import { CloseModalComponent } from './close-modal.component.js';
 
 export class PlusButtonComponent extends AbstractComponent {
-  constructor() {
-    super();
-  }
 
   _afterCreate() {
     const modalWindowComponent = new ModalWindowComponent(),
           modalWindowElement = modalWindowComponent.getElement();
-
     renderElement(this.getElement(), modalWindowElement, insertPosition.BEFOREEND);
-    const overlay = document.createElement('div');
-    overlay.classList.add('overlay');
-    renderElement(this.getElement(), overlay, insertPosition.BEFOREEND);
-
     modalWindowComponent.addEventListeners();
+
+    window.overlay = document.createElement('div');
+    window.overlay.classList.add('overlay');
+    renderElement(this.getElement(), window.overlay, insertPosition.BEFOREEND);
 
     const closeModalComponent = new CloseModalComponent(),
           closeModalElement = closeModalComponent.getElement();
