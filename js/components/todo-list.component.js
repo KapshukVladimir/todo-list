@@ -15,35 +15,59 @@ export class TodoListComponent extends AbstractComponent {
     this.tasks = taskData;
   }
 
+  getTodoElement(value) {
+    const todoItemComponent = new TodoItemComponent(value),
+          todoItemElement = todoItemComponent.getElement();
+    renderElement(this.getElement(), todoItemElement, insertPosition.BEFOREEND);
+
+    return todoItemElement;
+  }
+  renderCheckbox(value, todoEl) {
+    const checkBoxComponent = new CheckBoxComponent(value),
+          checkBoxElement = checkBoxComponent.getElement();
+    renderElement(todoEl, checkBoxElement, insertPosition.BEFOREBEGIN);
+    checkBoxComponent.addEventListeners();
+    return checkBoxElement;
+  }
+  renderDeleteButton(value, todoEl) {
+    const deleteButtonComponent = new DeleteButtonComponent(value),
+          deleteButtonElement = deleteButtonComponent.getElement();
+
+    renderElement(todoEl, deleteButtonElement, insertPosition.BEFOREBEGIN);
+    deleteButtonComponent.addEventListeners();
+  }
+  renderEditButton(value, todoEl) {
+    const editButtonComponent = new EditButtonComponent(value),
+          editButtonElement = editButtonComponent.getElement();
+    renderElement(todoEl, editButtonElement, insertPosition.BEFOREBEGIN);
+    editButtonComponent.addEventListeners();
+  }
+  setOpacity({todoElement, checkbox, isChecked}) {
+    if (!isChecked) {
+      setOpacityToLi(todoElement,'1');
+      checkbox.checked = false;
+    }else {
+      setOpacityToLi(todoElement, '.3')
+    }
+  }
   _render(arrayTasks) {
     this.getElement().innerHTML = "";
 
     arrayTasks.forEach((value) => {
-      const todoItemComponent = new TodoItemComponent(value);
-      const todoItemElement = todoItemComponent.getElement();
-      renderElement(this.getElement(), todoItemElement, insertPosition.BEFOREEND);
+      const todoElement = this.getTodoElement(value),
+            checkbox = this.renderCheckbox(value, todoElement),
+            opacityProps = {
+              todoElement,
+              checkbox,
+              isChecked: value.isChecked
+          };
+      this.renderDeleteButton(value, todoElement);
 
-      const checkBoxComponent = new CheckBoxComponent(value),
-        checkBoxElement = checkBoxComponent.getElement();
-      renderElement(todoItemElement, checkBoxElement, insertPosition.BEFOREBEGIN);
-      checkBoxComponent.addEventListeners();
+      this.setOpacity(opacityProps);
 
-      if (!value.isChecked) {
-        setOpacityToLi(todoItemElement,'1');
-        checkBoxComponent.getElement().checked = false;
-      }else {
-        setOpacityToLi(todoItemElement, '.3')
-      }
+      this.renderCheckbox(value, todoElement);
 
-      const deleteButtonComponent = new DeleteButtonComponent(value),
-        deleteButtonElement = deleteButtonComponent.getElement();
-      renderElement(todoItemElement, deleteButtonElement, insertPosition.BEFOREBEGIN);
-      deleteButtonComponent.addEventListeners();
-
-      const editButtonComponent = new EditButtonComponent(value),
-        editButtonElement = editButtonComponent.getElement();
-      renderElement(todoItemElement, editButtonElement, insertPosition.BEFOREBEGIN);
-      editButtonComponent.addEventListeners();
+      this.renderEditButton(value, todoElement);
     })
   }
 
@@ -75,7 +99,6 @@ export class TodoListComponent extends AbstractComponent {
   }
 
   _dataChange(event) {
-
     if (event.detail) {
       this.tasks = taskData;
       this._render(event.detail);

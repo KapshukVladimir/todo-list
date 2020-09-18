@@ -27,23 +27,23 @@ export const insertPosition = {
   BEFOREEND: 'beforeend'
 };
 
-export const sortType = {
-  BY_TEXT: 'sort-text',
-  BY_DATE: 'sort-date'
-};
+// export const sortType = {
+//   BY_TEXT: 'sort-text',
+//   BY_DATE: 'sort-date'
+// };
 
 export function formValidator(taskTitle, regExp) {
 
   if (regExp.test(taskTitle.value)){
     addTask({taskTitle: taskTitle.value, isChecked: false});
-    toolTipUpdater({visibility: 'hidden', outline: '1px solid #000'});
+    tooltipUpdater({visibility: 'hidden', outline: '1px solid #000'});
   } else {
-    toolTipUpdater({visibility: 'visible', outline: '1px solid red'});
+    tooltipUpdater({visibility: 'visible', outline: '1px solid red'});
   }
   taskTitle.value = "";
 }
 
-export function toolTipUpdater({visibility, outline}) {
+export function tooltipUpdater({visibility, outline}) {
   document.querySelector('.tooltip').style.visibility = visibility;
   document.querySelector('.form-input').style.outline = outline;
 }
@@ -79,13 +79,4 @@ export function formStyle(formWrapper) {
   formWrapper.lastChild.previousSibling.reset();
   formWrapper.style.display = 'none';
   formWrapper.nextElementSibling.style.display = 'none';
-}
-
-
-export function error() {
-  const element = document.createElement('div');
-  element.innerText = "Please fill in all fields";
-  element.classList.add('error-message');
-  const modalWrapper = document.querySelector('.modal-wrapper');
-  modalWrapper.appendChild(element);
 }
