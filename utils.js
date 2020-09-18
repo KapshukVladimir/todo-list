@@ -28,7 +28,6 @@ export const insertPosition = {
 };
 
 export function formValidator(taskTitle, regExp) {
-
   if (regExp.test(taskTitle.value)){
     addTask({taskTitle: taskTitle.value, isChecked: false});
     tooltipUpdater({visibility: 'hidden', outline: '1px solid #000'});

@@ -1,11 +1,11 @@
 import { AbstractComponent } from './abstract.component.js';
 import { addTask } from '../../services/task.services.js';
-import { formStyle } from '../../utils.js';
+import { formStyle, formValidator, regExp } from '../../utils.js';
 
 export class ModalWindowComponent extends AbstractComponent {
 
   _isValidate(task) {
-    return task.taskTitle !== '' && task.timeCreated !== '' && task.timeDeadline !== '';
+    return task.taskTitle !== '' && task.timeCreated !== '' && task.timeDeadline !== '' && formValidator(task.title, regExp)
   }
 
   _newTaskModal(event) {

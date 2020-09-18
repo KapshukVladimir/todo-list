@@ -1,4 +1,5 @@
 import { getTimeCreated, getTimeDeadline, uniqueId } from '../utils.js'
+import {TodoItemComponent} from "../js/components/todo-item.component.js";
 
 export let taskData = [
   { id: 1, taskTitle: 'Купить картошку.', timeCreated: getTimeCreated(), timeDeadline: getTimeDeadline(), isChecked: false},
@@ -40,24 +41,23 @@ export function addTask(task) {
   task.id = uniqueId();
   task.timeCreated = task.timeCreated || getTimeCreated();
   task.timeDeadline = task.timeDeadline || getTimeDeadline();
-  taskData.push(task);
-  emitEvent('add-task', task);
+
+  taskData = [...taskData, task];
+
+  emitEvent('add-task', taskData);
 }
 
 export function editTask(task) {
-  const taskIndex = taskData.findIndex(el => el.id === task.id);
+  taskData = taskData.filter(el => el.id !== task.id);
 
-  if (taskIndex !== -1) {
-    taskData.splice(taskIndex, 1, task);
-  }
-  emitEvent('edit-task', task);
+  emitEvent('edit-task', [...taskData ,task]);
 }
 
 export function taskDone(task) {
   taskData.filter((el) => {
-
-    if (el !== task) {
+    if (el.isChecked !== task.isChecked) {
       el = task;
+
       return el;
     }
   });
@@ -66,32 +66,40 @@ export function taskDone(task) {
 }
 
 export function showAllTasks() {
-  emitEvent('show-all');
+  emitEvent('show-all', taskData);
 }
 
 export function showActiveTasks() {
   let sorted = taskData.filter(el => !el.isChecked);
-  emitEvent('show-active', {detail: sorted});
+
+  emitEvent('show-active', sorted);
 }
 
 export function showCompletedTasks() {
-  let sorted = taskData.filter(el => el.isChecked);
-  emitEvent('show-completed', {detail: sorted});
+  const sorted = taskData.filter(el => el.isChecked);
+
+  emitEvent('show-completed', sorted);
 
 }
 
 export function clearCompletedTasks() {
-  taskData = taskData.filter(task => task.isChecked === false);
-  emitEvent('clear-completed', {detail: taskData});
+  taskData = taskData.filter(task => !task.isChecked);
+
+  emitEvent('clear-completed', taskData);
 }
 
 export function deleteTask(task) {
   taskData = taskData.filter(t => t.id !== task.id);
-  emitEvent('delete-task', task);
+
+  emitEvent('delete-task', taskData);
 }
 
 export function emitEvent(type, data) {
-  window.dispatchEvent(new CustomEvent(type, data));
+  window.dispatchEvent(new CustomEvent(type, {
+    detail: {
+      data
+  }
+  }));
 }
 
 

@@ -102,13 +102,7 @@ export class TodoListComponent extends AbstractComponent {
     sortComponent.addEventListeners();
   }
 
-  _dataChange(event) {
-    if (event.detail) {
-      this.tasks = taskData;
-      this._render(event.detail);
-    }else {
-      this.tasks = taskData;
-      this._render(this.tasks);
-    }
+  _dataChange({ detail: { data } }) {
+      this._render(data)
   }
 }
