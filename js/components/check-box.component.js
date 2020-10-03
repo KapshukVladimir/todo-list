@@ -10,7 +10,7 @@ export class CheckBoxComponent extends AbstractComponent {
 
   _isCompleted() {
     this._task.isChecked = !this._task.isChecked;
-    taskDone(this._task);
+    taskDone();
     this.getElement().setAttribute('checked','true');
   }
 

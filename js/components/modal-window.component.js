@@ -18,12 +18,8 @@ export class ModalWindowComponent extends AbstractComponent {
       formWrapper = this.getElement();
 
     if (this._isValidate({taskTitle, timeCreated, timeDeadline, isChecked: false})) {
-      addTask({
-        taskTitle,
-        timeCreated,
-        timeDeadline,
-        isChecked
-      });
+
+      
       formStyle(formWrapper);
     }else {
       this.getTaskTitle().style.outline = '1px solid red';

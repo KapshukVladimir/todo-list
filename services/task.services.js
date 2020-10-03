@@ -48,21 +48,19 @@ export function addTask(task) {
 }
 
 export function editTask(task) {
-  taskData = taskData.filter(el => el.id !== task.id);
-
-  emitEvent('edit-task', [...taskData ,task]);
-}
-
-export function taskDone(task) {
-  taskData.filter((el) => {
-    if (el.isChecked !== task.isChecked) {
+  taskData.filter(el => {
+    if (el.id !== task.id){
       el = task;
-
-      return el;
+      return el
     }
   });
 
-  emitEvent('update-tasks', task);
+  emitEvent('edit-task', taskData);
+}
+
+export function taskDone() {
+  taskData.filter(el => el.isChecked);
+  emitEvent('update-tasks', taskData);
 }
 
 export function showAllTasks() {
@@ -70,7 +68,7 @@ export function showAllTasks() {
 }
 
 export function showActiveTasks() {
-  let sorted = taskData.filter(el => !el.isChecked);
+  const sorted = taskData.filter(el => !el.isChecked);
 
   emitEvent('show-active', sorted);
 }

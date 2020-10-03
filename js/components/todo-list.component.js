@@ -19,7 +19,7 @@ export class TodoListComponent extends AbstractComponent {
           todoItemElement = todoItemComponent.getElement();
     renderElement(this.getElement(), todoItemElement, insertPosition.BEFOREEND);
 
-    return todoItemElement;
+   return todoItemElement;
   }
 
   renderCheckbox(value, todoEl) {
@@ -58,6 +58,7 @@ export class TodoListComponent extends AbstractComponent {
     this.getElement().innerHTML = "";
 
     arrayTasks.forEach((value) => {
+
       const todoElement = this.getTodoElement(value),
         checkbox = this.renderCheckbox(value, todoElement),
         opacityProps = {
